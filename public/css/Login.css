@@ -1,0 +1,222 @@
+body
+{
+ background-image: url("../images/BUYN_Background.png");
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center center;
+ background-color: #ffffff;
+ text-align: center;
+ font-family: "Montserrat";
+}
+h1, h2, h4, h5, h6 {
+  font-family: "Montserrat";
+  font-weight: 400;
+}
+h3
+{
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 0.7rem;
+}
+hr
+{
+  margin: 1.875rem auto 1.875rem;
+}
+/* NAVBAR */
+.topnav {
+  background-color: #000;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #fff;
+  font-family: "Montserrat";
+  font-weight: 400;
+  text-align: center;
+  padding: 7px 16px;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.logoImg
+{
+  width: 25%;
+  /* margin-top: 3%; */
+  position: relative;
+  top: 2.1875rem;
+}
+.loginBox
+{
+  margin: 0 18% 5.5% 18%;
+  border-radius: 0.9375rem;
+  padding: 5% 10% 3% 10%;
+  background-color: #fff;
+}
+.welcomeMsg
+{
+  margin: 10px auto 20px;
+}
+.mod-third-party-login-fb {
+    width: 80%;
+    background: #3b5998;
+    height: 2.5rem;
+    border-radius: 0.4375rem;
+    color: white;
+    margin-bottom: 1.5625rem;
+    font-size:0.875rem;
+}
+.mod-third-party-login-google {
+    width: 80%;
+    background: #d34836;
+    height: 2.5rem;
+    border-radius: 0.4375rem;
+    color: white;
+    font-size:0.875rem;
+}
+.alt-login-icon
+{
+  margin: auto 10px;
+}
+.email
+{
+  width: 90%;
+  padding: 0 7px;
+  font-size: 0.9rem;
+}
+.password
+{
+  width: 90%;
+  padding: 0 7px;
+  font-size: 0.9rem;
+}
+/* Button */
+.divButton
+{
+  text-align: right;
+  margin: 1px 1px 30px;
+}
+.mySubmit {
+  background:    #1fe5bd;
+  border:        1px solid #cccccc;
+  border-radius: 6px;
+  padding:       8px 50px;
+  color:         #ffffff;
+  display:       inline-block;
+  font:          normal 700 20px/1 "Calibri", sans-serif;
+  text-align:    center;
+  text-shadow:   none;
+}
+.mySubmit:hover {
+	background-color:#d9d9d9;
+}
+.mySubmit:active {
+	position:relative;
+	top:1px;
+}
+
+.myCancel {
+  background:    #ffffff;
+  border:        1px solid #cccccc;
+  border-radius: 6px;
+  padding:       8px 50px;
+  color:         #1fe5bd;
+  display:       inline-block;
+  font:          normal 700 20px/1 "Calibri", sans-serif;
+  text-align:    center;
+  text-shadow:   none;
+}
+.myCancel:hover {
+	background-color:#d9d9d9;
+}
+.myCancel:active {
+	position:relative;
+	top:1px;
+}
+@media (max-width: 1028px) {
+  .loginBox {
+    padding: 5% 3%;
+  }
+}
+@media (max-width: 540px) {
+  .loginBox {
+    padding: 5% 0.5%;
+  }
+  .mySubmit{
+    padding:0.625rem 2rem;
+  }
+  .myCancel{
+    padding:0.625rem 2rem;
+  }
+}
+
+/* MODAL */
+.inputContainer
+{
+  padding: 1.5rem;
+}
+.avatar
+{
+  padding-top: 1.5rem;
+}
+.name
+{
+  width: 70%;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: text;
+  padding: 8px 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.psw
+{
+  width: 70%;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: text;
+  padding: 8px 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.address
+{
+  width: 70%;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: text;
+  padding: 8px 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.postal
+{
+  width: 70%;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  cursor: text;
+  padding: 8px 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

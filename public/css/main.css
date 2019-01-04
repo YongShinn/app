@@ -1,0 +1,180 @@
+body
+{
+  background-color: #f9f9f9;
+  text-align: center;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+*:focus {
+    outline: none;
+}
+button
+{
+ cursor: pointer;
+ outline: none;
+}
+button:focus
+{
+ outline: none;
+}
+/* navbar */
+* {box-sizing: border-box;}
+
+.topnav {
+  overflow: hidden;
+  background-color: #1fe5bd;
+  position: fixed;
+  top: 0;
+  z-index: 1030;
+  padding: 0 3rem;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 2.3rem;
+}
+
+.topnav .search-container {
+  float: left;
+  margin: auto 0;
+  width: 70%;
+}
+
+.topnav input[type=text] {
+  float: left;
+  padding: 6px;
+  font-size: 20px;
+  border-color: #1fe5bd;
+  background-color: #FFFFFF;
+  color: #000000;
+  border: 1px solid #fff;
+  margin: 20.3px 0;
+  width: 80%;
+}
+
+.topnav .search-container button {
+  float: left;
+  padding: 6px 10px;
+  margin: 20.3px 16px 20.3px 0;
+  background: #ddd;
+  font-size: 17px;
+  border: 3.4px solid #ffffff;;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;
+  }
+}
+.topnav .icon-container
+{
+  float: right;
+  padding: 24.9px 0;
+}
+.top-bar-icon
+{
+  margin: 0 15px;
+}
+
+/* newsbar */
+.newsBarText{color:red;}
+#news-bar {
+  width: 100%;
+  background:white;
+  border-radius: 3px;
+  font: 21px bold;
+  padding:4px;
+  padding-left: 20px;
+  padding-right: 20px;
+  top: 84.2px;
+  position: fixed;
+  z-index: 1030;
+}
+
+#news-bar:hover {
+  transition: 1s;
+}
+
+/* everthing */
+.everything
+{
+  margin: 121.8px 3rem auto;
+}
+
+/*carousel*/
+.carousel-item
+{
+  height: 425px;
+  width: 1423.2px;
+}
+
+/* tab retail */
+.retail
+{
+  margin-top: 15px;
+  background-color: #fff;
+  box-shadow: 1px 1px #888888;
+}
+
+.moreRetailBtn
+{
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px 52px;
+  border: 12px solid #ffffff;
+  border-radius: 0px;
+  background: #dddddd;
+  font: normal normal bold 16px arial;
+  color: #111111;
+  text-decoration: none;
+}
+.moreRetailBtn:hover
+{
+  background: #cccccc;
+}
+
+/* footer */
+.footer
+{
+  background: #1fe5bd;
+  height: 80px;
+  padding: 0 3rem;
+}
+.copyright
+{
+  padding: 1.4% 1% 0s;
+  line-height: 50px;
+  text-align: left;
+}
+h6.copyright
+{
+  padding: 4.5% 0;
+}
+.followUs
+{
+  padding: 0.6% 0;
+  line-height: 50px;
+  text-align: right;
+}
