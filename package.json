@@ -9,10 +9,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "amazon-cognito-identity-js": "^3.0.6",
+    "aws-sdk": "^2.383.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jquery": "^3.3.1",
     "jsdom": "^13.1.0",
+    "jsonwebtoken": "^8.4.0",
+    "jwk-to-pem": "^2.0.1",
+    "node-fetch": "^2.3.0",
     "xmlhttprequest": "^1.8.0"
   }
 }
