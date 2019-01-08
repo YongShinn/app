@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var jsdom = require("jsdom");
+
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 const CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
 const AWS = require('aws-sdk');
@@ -11,11 +12,15 @@ const request = require('request');
 const jwkToPem = require ('jwk-to-pem');
 const jwt = require('jsonwebtoken');
 global.fetch = require('node-fetch');
+
 const { JSDOM } = jsdom;
 const { window } = new JSDOM();
 const { document } = (new JSDOM('')).window;
 global.document = document;
 
+var $ = require('jquery')(window);
+
+//login n reg
 const poolData = {
   UserPoolId : "ap-southeast-1_npYY55FZJ",
   ClientId : "5ng046js96l2gcqefbiahjupet"
@@ -33,10 +38,10 @@ function RegisterUser(userEmail, userPassword){
       }
       cognitoUser = result.user;
       console.log('user name is ' + cognitoUser.getUsername());
-  }); 
+  });
 }
 
-function Login(userEmail, userPassword) {
+function Login(userEmail, userPassword, resp) {
   var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
       Username : userEmail,
       Password : userPassword,
@@ -53,15 +58,16 @@ function Login(userEmail, userPassword) {
           console.log('access token + ' + result.getAccessToken().getJwtToken());
           console.log('id token + ' + result.getIdToken().getJwtToken());
           console.log('refresh token + ' + result.getRefreshToken().getToken());
+          resp.redirect("/login");
       },
       onFailure: function(err) {
           console.log(err);
+          resp.redirect("/");
       },
-
   });
 }
 
-var $ = require('jquery')(window);
+
 
 const app = express();
 app.use(bodyParser.json()); // to support JSON bodie
@@ -72,11 +78,15 @@ app.use(express.static("public"));
 app.get("/", function(req, res){
   res.sendFile(__dirname + "/index.html");
 });
+app.get("/login", function(req, res){
+  res.sendFile(__dirname + "/main.html");
+});
+
 
 app.post("/", function(req, res){ // sign in
   var uEmail = req.body.uEmail;
   var uPassword = req.body.uPassword;
-  Login(uEmail, uPassword);
+  Login(uEmail, uPassword, res);
   console.log(uEmail);
   console.log(uPassword);
 });
