@@ -13,7 +13,7 @@ def scraping(retailer, link, qty):
         prod_price = tree.xpath(
             '//*[@id="node-product-price"]/div[' + qty + ']/div[1]/span/text()')
         list_prod[0] = prod_name[0]
-        list_prod[1] = prod_price[0]
+        list_prod[1] = (prod_price[0])[1:]
         return list_prod
     elif (retailer == """Uniqlo: [$60]👚"""):
         page = requests.get(link)
@@ -22,10 +22,6 @@ def scraping(retailer, link, qty):
         prod_name = tree.xpath('//*[@id="goodsNmArea"]/span/text()')
         prod_price = tree.xpath(
             '//*[@id="product-price-7"]/text()')
-        list_prod[0] = prod_name[0]
-        list_prod[1] = prod_price[0]
+        list_prod[0] = (prod_name[0])[21:]
+        list_prod[1] = (prod_price[0])[2:]
         return list_prod
-
-
-scraping("""Uniqlo: [$60]👚""",
-         'https://www.uniqlo.com/sg/store/women-airism-seamless-v-neck-bra-camisole-4135720024.html?colorc=COL33', 'NA')
