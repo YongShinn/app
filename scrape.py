@@ -35,7 +35,7 @@ def scraping(retailer, link, qty):
         prod_name = tree.xpath(
             '//*[@id="product"]/div[1]/div/div[2]/header/h1/text()')
         prod_price = tree.xpath(
-            '//*[@id="product"]/div[1]/div/div[2]/div[1]/node()')
+            '//*[@id="product"]/div[1]/div/div[2]/div[1]/span/text()')
         list_prod[0] = prod_name[0]
         list_prod[1] = prod_price
         return list_prod
@@ -60,16 +60,6 @@ def scraping(retailer, link, qty):
             '//*[@id="product-price-7"]/text()')
         list_prod[0] = (prod_name[0])[21:]
         list_prod[1] = (prod_price[0])[2:]
-        return list_prod
-    elif (retailer == """Colorpop: [$50]💄"""):
-        page = requests.get(link)
-        tree = html.fromstring(page.content)
-        # This will create a list of buyers:
-        prod_name = tree.xpath(
-            '//*[@class="prod-name"]/text()')
-        prod_price = tree.xpath('//*[@id="mainprice"]/text()')
-        list_prod[0] = prod_name[0]
-        list_prod[1] = (prod_price[0])[8:12]
         return list_prod
 
 
