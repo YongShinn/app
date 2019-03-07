@@ -51,7 +51,7 @@ bot.set_update_listener(listener)  # register listener
 @bot.message_handler(commands=['start'])
 def command_start(m):
     cid = m.chat.id
-    sql_create.insert_users(m.chat.first_name)
+    sql_create.insert_users(m.chat.username)
     markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
     itembtn1 = types.KeyboardButton('/create')
     itembtn2 = types.KeyboardButton('/join')
@@ -130,7 +130,7 @@ def create_chooseBrand(message):
 
 #            #
 # SCREENSHOT #
-#            #
+#            # base price
 
 
 def create_screenshot(message):
@@ -259,6 +259,12 @@ def create_location(message):
     except Exception as e:
         bot.reply_to(message, 'oooops')
 
+#Give username (add_user) take userID
+#create bubble take bubble id and UCD
+#After choosing brand, take retailer ID
+#Add_item(overall_item) take item id
+#add order() take PTN
+#Replace all PTN relating to that user
 
 @bot.message_handler(commands=['join'])
 def command_join(m):
@@ -307,7 +313,11 @@ def join_link(message):
     except Exception as e:
         bot.reply_to(message, 'oooops')
 
-
+#JOIN
+#send UCD, take bubble ID
+#send user take userID
+#Send qty col.... Take itemID 
+#send order transsaction ID
 
 @bot.message_handler(commands=['edit'])
 def command_edit(m):
@@ -325,6 +335,11 @@ def edit_message(m):
     bot.send_message(
         cid, """Well received, let us connect you to a Buyn admin ASAP!""")
 
+#edit
+#send PTN, take all item name and item id
+#ask which item, storelocal
+#ask color qty..... store local
+#send to database...
 
 @bot.message_handler(commands=['faq'])
 def command_faq(m):
