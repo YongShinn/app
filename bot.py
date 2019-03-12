@@ -2,7 +2,7 @@
 # 788731481:AAF30CxdR5WM5uZGTCKzAAzpySlTTPZN4CY
 
 import time
-import sql_create
+import database
 
 import telebot
 from telebot import types
@@ -12,12 +12,20 @@ from threading import Thread
 TOKEN = '788731481:AAF30CxdR5WM5uZGTCKzAAzpySlTTPZN4CY'
 
 
-Customeritem = ['name', 'brand', 'link1', 'qty1', 'size1', 'color1', 'location', 'Prod_name', 1.1]
+Customeritem = ['name', 'brand', 'link1', 'qty1', 'size1', 'color1', 'location', 'Prod_name', 1.1, 1.1]
 
 Joinitem = ['UCN', 'link1', 'qty1', 'size1', 'color1', 'Prod_name', 1.1, 'name']
 
 Edititem = ['ChatID', 'first_name', ['empty', 'empty', 'empty'], ['0', '0', '0'], 'choice', 'properties', 'changes']
 
+Backend_stuff = [1, 1, 1, '1', 1, '1', 1]
+# userID = 1
+# retailerID = 1
+# bubbleID = 1
+# UCD = '1'
+# itemID = 1
+# PTN = '1'
+# timer = 1
 
 commands = {  # command description used in the "help" command
     'start': 'Welcome to Buyn',
@@ -52,7 +60,7 @@ bot.set_update_listener(listener)  # register listener
 @bot.message_handler(commands=['start'])
 def command_start(m):
     cid = m.chat.id
-    sql_create.insert_users(m.chat.first_name)
+    # sql_create.insert_users(m.chat.first_name)
     markup = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
     itembtn1 = types.KeyboardButton('/create')
     itembtn2 = types.KeyboardButton('/join')
@@ -217,6 +225,7 @@ def create_screenshot_Color(message):
         markup7.add(itembtn1, itembtn2)
         Customeritem[7] = scrape.scraping(Customeritem[1], Customeritem[2], Customeritem[3])[0]
         print(Customeritem[7])
+        Customeritem[9] = float(scrape.scraping(Customeritem[1], Customeritem[2], Customeritem[3])[1])
         Customeritem[8] = float(scrape.scraping(Customeritem[1], Customeritem[2], Customeritem[3])[1]) * float(Customeritem[3])
         # print("""Product Name: """ + scrape.scraping(Customeritem[1], Customeritem[2], "NA")[0] + '\nPrice: ' + scrape.scraping(
         #         Customeritem[1], Customeritem[2], "NA")[1] + '\nQty: ' + Customeritem[3] + '\nSize: ' + Customeritem[4] + '\nColor: ' + Customeritem[5])
@@ -260,10 +269,18 @@ def create_location(message):
         location = message.text
         print(location)
         Customeritem[6] = location
-        userID = 1 #add_user(message.chat.username)
-        bubbleID = 1 #add_bubble(retailerID, userID, location)
-        itemID = 1 #add_item(retailerID, Customeritem[2], Customeritem[0], Customeritem[8], Customeritem[4], Customeritem[5], Customeritem[3])
-        PTN = 123456 #add_order(bubbleID, userID, itemID)
+        Backend_stuff[0] = database.add_user(message.chat.first_name)
+        print(Backend_stuff[0])
+        if (Backend_stuff[6] == 1):
+            Backend_stuff[6] = Backend_stuff[6] + 1
+            print(Backend_stuff[6])
+            Backend_stuff[2], Backend_stuff[3] = database.add_bubble(Backend_stuff[1], Backend_stuff[0], Customeritem[6])
+            print(Backend_stuff[2])
+        Backend_stuff[4] = database.add_item(1, Customeritem[2], Customeritem[7], Customeritem[9], Customeritem[4], Customeritem[5], int(Customeritem[3]))
+        #itemID = database.add_item(1, 'www.blah4.com', 'purple tee', 20.25, 'EU 34', 'purple', 2)
+        print(Backend_stuff[4])
+        Backend_stuff[5] = database.add_order(Backend_stuff[2], Backend_stuff[0], Backend_stuff[4])
+        print(Backend_stuff[5])
         markup9 = types.ReplyKeyboardMarkup(row_width=1)
         itembtn1 = types.KeyboardButton('Yes')
         itembtn2 = types.KeyboardButton('No')
@@ -286,13 +303,19 @@ def create_continue(message):
             print("qwe")
             Thread(target=create_chooseBrand(Customeritem[1])).start()
         else:
-            Thread(target=command_start(message)).start()
-            # if (replace_ptn(PTN, bubbleID, userID)):
-            #     bot.send_message(chat_id, "Thx Thx")
-            #     Thread(target=command_start(message)).start()
-            # else: 
-            #     bot.send_message(chat_id, "Sorry Unsucessful")
-            #     Thread(target=command_start(message)).start()
+            if (database.replace_ptn(Backend_stuff[5], Backend_stuff[2], Backend_stuff[0])):
+                bot.send_message(chat_id, """Good choice! 
+
+This is your Unique Cart Number (UCN): **"""+Backend_stuff[3]+"""**
+This is your Personal Transaction Number (PTN) (do not share this!): **"""+Backend_stuff[5]+"""**
+
+We will ask for payments once your Cart is full!
+
+For now, get your friends to join your Cart! :-)""")
+                Thread(target=command_start(message)).start()
+            else: 
+                bot.send_message(chat_id, "Sorry Unsucessful")
+                Thread(target=command_start(message)).start()
     except Exception as e:
         bot.reply_to(message, 'oooops')
 #Give username (add_user) take userID
@@ -426,10 +449,10 @@ def join_confirm(message):
         chat_id = message.chat.id
         confirmation = message.text
         if (confirmation == 'Yes'):
-            userID = 1 # add_user(chat_id)
+            userID = '1' # add_user(chat_id)
             # bubbleID, retailID = retrieve_bubble(Joinitem[0])
-            itemID = 1 # 3.	add_item(retailID, Joinitem[1], Joinitem[5], Joinitem[6], Joinitem[3], Joinitem[4], Joinitem[2])
-            PTN = 123456 # add_order(bubbleID, userID, itemID)
+            itemID = '1' # 3.	add_item(retailID, Joinitem[1], Joinitem[5], Joinitem[6], Joinitem[3], Joinitem[4], Joinitem[2])
+            PTN = '123456' # add_order(bubbleID, userID, itemID)
             markup15 = types.ReplyKeyboardMarkup(row_width=1, one_time_keyboard=True)
             itembtn1 = types.KeyboardButton('Yes')
             itembtn2 = types.KeyboardButton('No')
